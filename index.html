@@ -45,6 +45,7 @@
 
 			#result {
 				width: 600px;
+				margin: 0 auto;
 				border-radius: 8px;
 				box-shadow: 0 8px 36px rgba(0, 0, 0, 0.05);
 			}
@@ -116,18 +117,33 @@
 				#body {
 					min-height: -webkit-fill-content;
 				}
-            }
-            
-            :root {
-				--title: #eee;
-				--content: #757575;
+			}
 
-				--link: #0069ff;
-				--link-overlay: rgba(0, 123, 255, 0.125);
+			@media (max-width: 568px) {
+				#result {
+					width: 95%;
+				}
+			}
+			
+			@media (min-width: 568px) and (max-width: 767.9px) {
+				#result {
+					width: 90%;
+				}
+			}
 
-				--border: #444;
-				--preload: #444;
-				--background: #313131;
+
+            @media (prefers-color-scheme: dark) {
+				:root {
+					--title: #eee;
+					--content: #757575;
+
+					--link: #0069ff;
+					--link-overlay: rgba(0, 123, 255, 0.125);
+
+					--border: #444;
+					--preload: #444;
+					--background: #313131;
+				}
 			}
 		</style>
 		<script src="/index.js"></script>
