@@ -38,9 +38,11 @@
 			}
 
 			#title {
-				color: var(--title);
-				font-size: 36px;
-				font-weight: 400;
+				position: absolute;
+				top: calc(5vh + 20px);
+				color: var(--content);
+				font-size: 24px;
+				font-weight: 300;
 				margin: 0 0 28px 0;
 				text-align: center;
 			}
@@ -70,15 +72,15 @@
 				padding: 8px 12px;
 				border-radius: 4px;
 				border: 1px solid var(--border);
-                background-color: var(--background);
-                transition: box-shadow .2s ease-out;
-                outline: none;
-            }
-            
-            #name:hover,
-            #name:focus {
-                box-shadow: 0 0 0 2px var(--title);
-            }
+				background-color: var(--background);
+				transition: box-shadow 0.2s ease-out;
+				outline: none;
+			}
+
+			#name:hover,
+			#name:focus {
+				box-shadow: 0 0 0 2px var(--title);
+			}
 
 			#change-profile {
 				appearance: none;
@@ -90,24 +92,27 @@
 				height: 40px;
 				background-color: var(--preload);
 				border-radius: 4px;
+				padding: 0;
 				border: 0;
-                transition: background-color .2s ease-out, box-shadow .2s ease-out;
+				transition: background-color 0.2s ease-out,
+					box-shadow 0.2s ease-out;
 				outline: none;
 				cursor: pointer;
 			}
 
 			#change-profile:hover,
 			#change-profile:focus {
-                background-color: var(--link-overlay);
-                box-shadow: 0 0 0 2px var(--link);
-            }
-            
-            #change-profile > .icon {
-                transition: stroke .2s ease-out;
-            }
+				background-color: var(--link-overlay);
+				box-shadow: 0 0 0 2px var(--link);
+			}
+
+			#change-profile > .icon {
+				transition: stroke 0.2s ease-out;
+			}
 
 			#change-profile:hover > .icon,
 			#change-profile:focus > .icon {
+				margin: 0;
 				stroke: var(--link);
 			}
 
@@ -115,6 +120,27 @@
 			#profile-file,
 			#profile {
 				display: none;
+			}
+
+			#github {
+				position: absolute;
+				bottom: calc(6.25vh + 20px);
+				width: 40px;
+				height: 40px;
+				padding: 4px;
+				opacity: 0.2;
+				outline: none;
+				transition: opacity 0.2s;
+			}
+
+			#github > .icon {
+				width: 100%;
+				margin: 0;
+			}
+
+			#github:hover,
+			#github:focus {
+				opacity: 0.5;
 			}
 
 			@supports (-webkit-overflow-scrolling: touch) {
@@ -128,15 +154,24 @@
 					width: 100%;
 				}
 			}
-			
+
+			@media (max-height: 540px) {
+				#title {
+					display: none;
+				}
+
+				#github {
+					right: 40px;
+				}
+			}
+
 			@media (min-width: 568px) and (max-width: 767.9px) {
 				#result {
 					width: 90%;
 				}
 			}
 
-
-            @media (prefers-color-scheme: dark) {
+			@media (prefers-color-scheme: dark) {
 				:root {
 					--title: #eee;
 					--content: #757575;
@@ -147,6 +182,15 @@
 					--border: #444;
 					--preload: #444;
 					--background: #313131;
+				}
+
+				#github {
+					opacity: 0.8;
+				}
+
+				#github:hover,
+				#github:focus {
+					opacity: 1;
 				}
 			}
 		</style>
@@ -160,7 +204,10 @@
 		<link rel="shortcut icon" href="/assets/san-diego.png" />
 
 		<!-- Open Graph -->
-		<link rel="canonical" href="https://sung-son-phom-duay-kub.saltyaom.com" />
+		<link
+			rel="canonical"
+			href="https://sung-son-phom-duay-kub.saltyaom.com"
+		/>
 		<meta property="og:title" content="สั่งสอนผมด้วยครับ Generator" />
 		<meta
 			property="og:description"
@@ -200,7 +247,7 @@
 		/>
 
 		<section id="controller">
-			<input id="name" type="text" placeholder="ชื่อ" />
+			<input id="name" type="text" placeholder="ชื่อ" autocomplete="off" />
 			<button id="change-profile">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -227,6 +274,18 @@
 				</svg>
 			</button>
 		</section>
+
+		<a
+			id="github"
+			target="_blank"
+			href="https://github.com/SaltyAom/sung-son-phom-duay-kub-generator"
+			rel="noreopener norefferer"
+		>
+			<img
+				class="icon"
+				src="https://cdn.jsdelivr.net/npm/simple-icons@v2/icons/github.svg"
+			/>
+		</a>
 
 		<input id="profile-file" type="file" accept="image/*" />
 		<canvas id="canvas"></canvas>
